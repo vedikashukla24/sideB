@@ -1,4 +1,4 @@
-name: Python Automation
+name: Git Automation Workflow
 
 on:
   push:
@@ -6,12 +6,16 @@ on:
       - main
       - Ayush
 
+  pull_request:
+    branches:
+      - main
+
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Pull Repository
         uses: actions/checkout@v4
 
       - name: Setup Python
@@ -19,8 +23,11 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Check Python Version
+      - name: Display Python Version
         run: python --version
 
-      - name: Run Python Program
+      - name: Run Python File
         run: python Ay.py
+
+      - name: Workflow Completed
+        run: echo "Automation Successful"
